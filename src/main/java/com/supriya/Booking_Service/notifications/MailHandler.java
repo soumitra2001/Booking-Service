@@ -15,7 +15,7 @@ public class MailHandler {
 
     }
 
-    public void sendMail(long id,String userName, String userEmail,long amount){
+    public void sendMail(long id,String userName, String userEmail,double amount){
         String host="smtp.gmail.com";
 
         Properties props=System.getProperties();
@@ -34,7 +34,7 @@ public class MailHandler {
             message.setRecipients(Message.RecipientType.TO,userEmail);
 
             message.setSubject(MailConstant.SUBJECT);
-            String content="Dear " + userEmail+
+            String content="Dear " + userName+
                     ",\n" +
                     "Thank you for choosing our booking service! Your reservation has been confirmed.\n" +
                     "\n" +

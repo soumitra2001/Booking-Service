@@ -32,19 +32,17 @@ public class SeatService {
         // fetch all seats to check the seat is present with the given id or not
         List<Seat> seats=getAllSeat();
         for(Seat seat:seats){
-
+//            System.out.println("my seat");
             //If any seat is present with this given id then only we are good to go with the pricing logic
             if(seat.getId()==id){
                 // adding requested seat details into the response
                 response.add(seat.toString()+"\n");
-
                 // Checking the booking percentage of this SeatClass
-                int bookingPercent=(seatCount()/bookedSeat(seat.getSeatClass()))*100;
+                int bookingPercent=(bookedSeat(seat.getSeatClass())/seatCount())*100;
 
                 // Get the pricing for the SeatClass
                 SeatPricing seatPrice=seatPricingService.getSeatPriceBySeatClass(seat.getSeatClass());
-                if(seatPrice==null) System.out.println("Hello Supriya!");
-                BigDecimal minPrice=seatPrice.getMinPrice();
+                BigDecimal minPrice= seatPrice.getMinPrice();
                 BigDecimal normalPrice=seatPrice.getNormalPrice();
                 BigDecimal maxPrice=seatPrice.getMaxPrice();
 
@@ -54,7 +52,7 @@ public class SeatService {
                     response.add("Price for this Seat is: "+minPrice);
                 }else if(bookingPercent<=60){
                     normalPrice = normalPrice==null ? maxPrice : normalPrice;
-                    response.add("Price for this Seat is: "+seatPrice.getNormalPrice());
+                    response.add("Price for this Seat is: "+normalPrice);
                 }else {
                     maxPrice = maxPrice==null ? normalPrice : maxPrice;
                     response.add("Price for this Seat is: "+maxPrice);

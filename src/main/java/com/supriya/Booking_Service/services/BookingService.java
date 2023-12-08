@@ -25,33 +25,31 @@ public class BookingService {
 
     // Create a booking for the selected seats
     public String bookSeats(BookingRequest request){
-
         // get the all seats requested by the user
         List<Seat> seats=seatService.findAllById(request.getSeatIds());
         // If any of the id invalid we should return an error response
         if(seats.isEmpty()){
             return "Please enter valid Seat's Ids for booking your Seats!";
         }
-
         // Now checking each seat if it is booked or not, if any seat or seats are booked show the user the booked
         // seats ids and request for try with another ids =>
         List<Long> ids=new ArrayList<>();
-        long amount=0L;
+        double amount=0d;
         for(Seat seat:seats){
             if(seat.isBooked())ids.add(seat.getId());
             else {
                 seat.setBooked(true);
-                long price=Long.parseLong(seatService.getSeatPrice(seat.getId()).get(1).split(" ")[5]);
+                double price=Double.parseDouble(seatService.getSeatPrice(seat.getId()).get(1).split(" ")[5]);
                 amount += price;
             }
         }
+        amount=Math.round((amount*10.0)/10.0);
         if(ids.isEmpty()){
             Booking booking=new Booking();
             booking.setSeats(seats);
             booking.setUserName(request.getUserName());
             booking.setUserEmail(request.getUserEmail());
             booking.setPhoneNumber(request.getPhoneNumber());
-
             //save to the booking information
             Booking bookedSeats = bookingRepo.save(booking);
 

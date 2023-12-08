@@ -20,7 +20,7 @@ public class Booking {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @ManyToOne(targetEntity = Seat.class,cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @OneToMany(targetEntity = Seat.class,cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     private List<Seat> seats;
 
     private String userName;

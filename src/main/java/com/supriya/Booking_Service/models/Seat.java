@@ -17,5 +17,6 @@ public class Seat {
 
     private String seatClass;
 
+
     private boolean isBooked;
 }
