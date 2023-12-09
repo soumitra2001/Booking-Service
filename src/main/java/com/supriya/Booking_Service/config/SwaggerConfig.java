@@ -19,7 +19,7 @@ import io.swagger.v3.oas.annotations.servers.Server;
         servers = {
                 @Server(
                         description = "AWS EC2 Server",
-                        url = "http://localhost:8080"
+                        url = "http://52.15.199.172:8080"
                 )
         }
 )
