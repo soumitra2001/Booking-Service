@@ -14,7 +14,7 @@
 	<name>Booking_Service</name>
 	<description>A Spring Boot-based Booking Service, seamlessly arrange seat selection and pricing for optimal user experience</description>
 	<properties>
-		<java.version>17</java.version>
+		<java.version>11</java.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -40,7 +40,7 @@
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
-			<version>8.0.33</version>
+			<version>8.0.32</version>
 		</dependency>
 
 		<dependency>
